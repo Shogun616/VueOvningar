@@ -2,9 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <title>Övning 7</title>
 </head>
 <body>
-
+<div id="app">
+    <p>Ditt nummer: {{yourNumber}}</p>
+    <p>{{message}}</p>
+    <input v-model="yourNumber">
+    <button v-on:click="guessNumber">Gissa ett nummer</button>
+</div>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Gissa ett nummer:',
+            yourNumber: '',
+            randNumb: Math.floor(Math.random()*10+1)
+        },
+        methods:{
+            guessNumber: function (){
+                console.log('Rätt nummer: ' + this.randNumb);
+                if(this.yourNumber < this.randNumb){
+                    this.message = 'Ditt nummer är för lågt!';
+                }
+                else if(this.yourNumber > this.randNumb){
+                    this.message = 'Ditt nummer är för högt!'
+                }
+                else {
+                    this.message = 'Du har gissat rätt!';
+                    this.yourNumber = '';
+                    this.randNumb = Math.floor(Math.random()*10+1);
+                }
+            }
+        }
+    })
+</script>
 </body>
 </html>

@@ -2,9 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <title>Övning 5</title>
 </head>
 <body>
+<div id="food">
+    <ul>
+        <li v-for="food in foods" v-text="food"></li>
+    </ul>
 
+    <input id="input" type="text" v-model="newFood">
+    <button v-if="newFood.length > 0" v-on:click="addFood">Lägg till ett matvara</button>
+</div>
+
+<script>
+    var app = new Vue({
+        el: '#food',
+        data: {
+            newFood: '',
+            foods: ['Beef', 'Banana', 'Milk']
+        },
+        methods: {
+            addFood(){
+                this.foods.push(this.newFood)
+            }
+        }
+    })
+</script>
 </body>
 </html>
